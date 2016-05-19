@@ -11,6 +11,7 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
+    # This error handling is great and would work even better with validations in the model
     if @car.save
       render json: @car.to_json, status: :created
     else
@@ -34,7 +35,7 @@ class CarsController < ApplicationController
   end
 
   private
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the scary internet, only allow the white list through. 😱
     def car_params
       params.require(:car).permit(:carMake, :carModel, :zipCode, :radius)
     end
